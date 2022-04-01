@@ -1,6 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 
+import routes from './routes/routes.js';
+
 class App {
   constructor() {
     this.server = express();
@@ -12,9 +14,8 @@ class App {
     this.server.use(express.json());
   }
 
-  // eslint-disable-next-line class-methods-use-this
   routes() {
-    // this.server.use(routes);
+    this.server.use(routes);
   }
 }
 
