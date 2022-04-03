@@ -16,7 +16,7 @@ services:
       - 'api-network'
     volumes:
       - .:/app
-      - node_modules:/app/node_modules
+      # - node_modules:/app/node_modules
 
   postgres:
     container_name: postgres
@@ -32,5 +32,5 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
 volumes:
-  node_modules: 
-  postgres-data: 
+  # node_modules:
+  postgres-data:
