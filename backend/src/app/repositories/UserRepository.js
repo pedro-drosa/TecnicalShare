@@ -1,6 +1,10 @@
 import User from '../models/User.js';
 
 class UserRepository {
+  findAllUsers() {
+    return User.findAll();
+  }
+
   createUser({
     name,
     email,
