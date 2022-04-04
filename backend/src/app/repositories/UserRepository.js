@@ -28,6 +28,10 @@ class UserRepository {
   findOneUserByEmail(email) {
     return User.findOne({ where: { email } });
   }
+
+  findOneUserById(id) {
+    return User.findByPk(id);
+  }
 }
 
 export default UserRepository;
