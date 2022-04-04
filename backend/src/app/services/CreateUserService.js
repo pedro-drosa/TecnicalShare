@@ -4,7 +4,14 @@ const userRepository = new UserRepository();
 
 class CreateUserService {
   static async execute(user) {
-    userRepository.createUser({ ...user });
+    const { email } = user;
+    const userExists = await userRepository.findOneUserByEmail(email);
+
+    if (userExists) return { error: 'This email has already been registered' };
+
+    const newUser = await userRepository.createUser({ ...user });
+
+    return newUser;
   }
 }
 

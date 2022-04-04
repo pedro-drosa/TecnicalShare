@@ -24,6 +24,10 @@ class UserRepository {
       biography,
     });
   }
+
+  findOneUserByEmail(email) {
+    return User.findOne({ where: { email } });
+  }
 }
 
 export default UserRepository;
