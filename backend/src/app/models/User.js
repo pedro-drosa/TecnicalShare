@@ -7,7 +7,9 @@ class User extends Model {
         name: DataTypes.STRING,
         email: DataTypes.STRING,
         password: DataTypes.STRING,
-        mentor: DataTypes.BOOLEAN,
+        occupation_area: DataTypes.STRING,
+        genre: DataTypes.STRING,
+        birth: DataTypes.DATE,
         biography: DataTypes.TEXT,
       },
       {

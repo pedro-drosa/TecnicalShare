@@ -20,9 +20,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      mentor: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+      occupation_area: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      genre: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      birth: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
       biography: {
