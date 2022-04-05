@@ -10,6 +10,7 @@ const userRouter = Router();
 userRouter.get('/', userController.index);
 userRouter.get('/:id', userController.show);
 userRouter.post('/', userController.store);
+userRouter.get('/:id/addresses', addressController.index);
 userRouter.post('/:id/addresses', addressController.store);
 
 export default userRouter;

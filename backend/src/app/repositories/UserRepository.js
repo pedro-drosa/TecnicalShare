@@ -29,8 +29,8 @@ class UserRepository {
     return User.findOne({ where: { email } });
   }
 
-  findOneUserById(id) {
-    return User.findByPk(id);
+  findOneUserById(id, options = null) {
+    return User.findByPk(id, options);
   }
 }
 
