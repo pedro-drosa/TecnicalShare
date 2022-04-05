@@ -20,6 +20,11 @@ class User extends Model {
 
   static associate(models) {
     this.hasOne(models.Address, { foreignKey: 'user_id', as: 'address' });
+    this.belongsToMany(models.Tag, {
+      foreignKey: 'user_id',
+      through: 'user_tags',
+      as: 'tags',
+    });
   }
 }
 
