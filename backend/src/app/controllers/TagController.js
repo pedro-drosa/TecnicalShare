@@ -1,8 +1,12 @@
 import CreateTagsService from '../services/CreateTagsService.js';
+import FindAllTagsService from '../services/FindAllTagsService.js';
 
 class TagController {
   async index(req, res) {
-    return res.json({ message: 'Listar todas as tags' });
+    const { id } = req.params;
+    const tags = await FindAllTagsService.execute(id);
+
+    return res.json(tags);
   }
 
   async store(req, res) {
@@ -15,7 +19,7 @@ class TagController {
       return res.status(400).json({ error: 'error when registering tags' });
     }
 
-    return res.json({ status });
+    return res.json({ message: 'tag registration successful' });
   }
 }
 
