@@ -35,6 +35,17 @@ module.exports = {
       biography: {
         type: Sequelize.TEXT,
       },
+      mentor: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+        allowNull: false,
+      },
+      portfolio: {
+        type: Sequelize.STRING,
+      },
+      social: {
+        type: Sequelize.STRING,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

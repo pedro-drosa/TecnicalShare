@@ -11,6 +11,9 @@ class User extends Model {
         genre: DataTypes.STRING,
         birth: DataTypes.DATE,
         biography: DataTypes.TEXT,
+        mentor: DataTypes.BOOLEAN,
+        portfolio: DataTypes.STRING,
+        social: DataTypes.STRING,
       },
       {
         sequelize: connection,

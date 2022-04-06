@@ -1,19 +1,23 @@
 import User from '../models/User.js';
 
 class UserRepository {
-  findAllUsers() {
-    return User.findAll();
+  findAllUsers(options) {
+    return User.findAll(options);
   }
 
-  createUser({
-    name,
-    email,
-    password,
-    occupationArea,
-    genre,
-    birth,
-    biography,
-  }) {
+  createUser(user) {
+    const {
+      name,
+      email,
+      password,
+      occupationArea,
+      genre,
+      birth,
+      biography,
+      mentor,
+      portfolio,
+      social,
+    } = user;
     return User.create({
       name,
       email,
@@ -22,6 +26,9 @@ class UserRepository {
       genre,
       birth,
       biography,
+      mentor,
+      portfolio,
+      social,
     });
   }
 
