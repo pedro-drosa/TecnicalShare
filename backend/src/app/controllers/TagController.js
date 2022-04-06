@@ -19,7 +19,7 @@ class TagController {
       return res.status(400).json({ error: 'error when registering tags' });
     }
 
-    return res.json({ message: 'tag registration successful' });
+    return res.json({ message: 'tag registration successful', status });
   }
 }
 
