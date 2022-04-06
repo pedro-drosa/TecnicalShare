@@ -1,18 +1,11 @@
-import UserRepository from '../repositories/UserRepository.js';
-
-const userRepository = new UserRepository();
+import FindAllMentor from '../services/FindAllMentors.js';
 
 class MentorController {
   async index(req, res) {
-    const mentors = await userRepository.findAllUsers({
-      where: { mentor: true },
-      attributes: ['id', 'name', 'email', 'occupation_area', 'genre'],
-      include: {
-        attributes: ['tag_name'],
-        association: 'tags',
-        through: { attributes: [] },
-      },
-    });
+    const mentors = await FindAllMentor.execute();
+
+    if (!mentors) return res.status(404).json({ error: 'no mentor found' });
+
     return res.json(mentors);
   }
 }
