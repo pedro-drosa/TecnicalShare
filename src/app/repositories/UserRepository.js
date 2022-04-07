@@ -10,29 +10,17 @@ class UserRepository {
   }
 
   createUser(user) {
-    const {
-      name,
-      email,
-      password,
-      occupationArea,
-      genre,
-      birth,
-      biography,
-      mentor,
-      portfolio,
-      social,
-    } = user;
     return User.create({
-      name,
-      email,
-      password,
-      occupation_area: occupationArea,
-      genre,
-      birth,
-      biography,
-      mentor,
-      portfolio,
-      social,
+      name: user.name,
+      email: user.email,
+      password: user.hash,
+      occupation_area: user.occupationArea,
+      genre: user.genre,
+      birth: user.birth,
+      biography: user.biography,
+      mentor: user.mentor,
+      portfolio: user.portfolio,
+      social: user.social,
     });
   }
 

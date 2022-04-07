@@ -1,5 +1,3 @@
-import 'dotenv/config';
-
 export default {
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT,
