@@ -1,4 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
+import * as yup from 'yup';
 
 class User extends Model {
   static init(connection) {
@@ -29,6 +30,27 @@ class User extends Model {
       through: 'user_tags',
       as: 'tags',
     });
+  }
+
+  static async validation(user) {
+    const schema = yup.object().shape({
+      name: yup.string().required(),
+      email: yup.string().email().required(),
+      password: yup.string().required().min(6),
+      occupationArea: yup.string().required(),
+      genre: yup.string().required(),
+      birth: yup.date().required(),
+      biography: yup.string(),
+      mentor: yup.boolean().optional(),
+      portfolio: yup.string(),
+      social: yup.string(),
+    });
+
+    if (!(await schema.isValid(user))) {
+      return false;
+    }
+
+    return true;
   }
 }
 

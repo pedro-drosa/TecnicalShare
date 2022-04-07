@@ -22,10 +22,14 @@ class UserController {
   }
 
   async store(req, res) {
-    const user = req.body;
-    const newUser = await createUserService.execute(user);
+    try {
+      const user = req.body;
+      const newUser = await createUserService.execute(user);
 
-    return res.json(newUser);
+      return res.json(newUser);
+    } catch (error) {
+      return res.status(400).json({ error });
+    }
   }
 }
 
