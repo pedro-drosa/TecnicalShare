@@ -5,8 +5,9 @@ import User from '../app/models/User.js';
 import Address from '../app/models/Address.js';
 import Tag from '../app/models/Tag.js';
 import Level from '../app/models/Level.js';
+import Appointment from '../app/models/Appointment.js';
 
-const models = [User, Address, Tag, Level];
+const models = [User, Address, Tag, Level, Appointment];
 
 class Database {
   constructor() {

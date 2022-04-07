@@ -1,6 +1,10 @@
 import User from '../models/User.js';
 
 class UserRepository {
+  findOneUser(options) {
+    return User.findOne(options);
+  }
+
   findAllUsers(options) {
     return User.findAll(options);
   }
