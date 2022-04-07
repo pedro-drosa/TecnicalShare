@@ -1,6 +1,14 @@
 import CreateAppointmentService from '../services/CreateAppointmentService.js';
+import FindAllAppointmentsService from '../services/FindAllAppointmentsService.js';
 
 class AppointmentController {
+  async index(req, res) {
+    const { id } = req.params;
+    const appointments = await FindAllAppointmentsService.execute(id);
+
+    return res.json(appointments);
+  }
+
   async store(req, res) {
     try {
       const { mentorId, date } = req.body;

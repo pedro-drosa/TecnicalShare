@@ -13,6 +13,10 @@ class AppointmentRepository {
   findOneAppointment(options) {
     return Appointment.findOne(options);
   }
+
+  findAllAppointments(options) {
+    return Appointment.findAll(options);
+  }
 }
 
 export default AppointmentRepository;

@@ -2,7 +2,7 @@ import UserRepository from '../repositories/UserRepository.js';
 
 const userRepository = new UserRepository();
 
-class FindAllMentor {
+class FindAllMentorService {
   static async execute() {
     const mentors = await userRepository.findAllUsers({
       where: { mentor: true },
@@ -20,4 +20,4 @@ class FindAllMentor {
   }
 }
 
-export default FindAllMentor;
+export default FindAllMentorService;
