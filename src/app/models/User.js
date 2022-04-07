@@ -32,7 +32,7 @@ class User extends Model {
     });
   }
 
-  static async validation(user) {
+  static async userValidation(user) {
     const schema = yup.object().shape({
       name: yup.string().required(),
       email: yup.string().email().required(),
@@ -47,6 +47,19 @@ class User extends Model {
     });
 
     if (!(await schema.isValid(user))) {
+      return false;
+    }
+
+    return true;
+  }
+
+  static async sessionValidation(email, password) {
+    const schema = yup.object().shape({
+      email: yup.string().email().required(),
+      password: yup.string().required().min(6),
+    });
+
+    if (!(await schema.isValid({ email, password }))) {
       return false;
     }
 

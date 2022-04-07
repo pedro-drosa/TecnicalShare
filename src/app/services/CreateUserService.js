@@ -8,7 +8,7 @@ class CreateUserService {
   static async execute(user) {
     const { email, password } = user;
 
-    if (!(await User.validation(user))) {
+    if (!(await User.userValidation(user))) {
       throw new Error('validation error, please check the data').message;
     }
 
