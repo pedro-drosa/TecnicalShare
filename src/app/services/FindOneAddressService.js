@@ -9,8 +9,15 @@ class FindOneAddressService {
       include: { association: 'address' },
     });
 
-    if (!userExists) return null;
-    return userExists;
+    if (!userExists) {
+      throw new Error('user not found, check data and try again').message;
+    }
+
+    if (!userExists.address) {
+      throw new Error('no address found for this user so far').message;
+    }
+
+    return userExists.address;
   }
 }
 

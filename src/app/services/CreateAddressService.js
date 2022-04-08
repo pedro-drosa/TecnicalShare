@@ -1,5 +1,6 @@
 import AddressRepository from '../repositories/AddressRepository.js';
 import UserRepository from '../repositories/UserRepository.js';
+import Address from '../models/Address.js';
 
 const addressRepository = new AddressRepository();
 const userRepository = new UserRepository();
@@ -7,9 +8,16 @@ const userRepository = new UserRepository();
 class CreateAddressService {
   static async execute(address) {
     const { id, zipcode, uf, city } = address;
+
+    if (!(await Address.addressValidation(address))) {
+      throw new Error('data validation error').message;
+    }
+
     const userExists = await userRepository.findOneUserById(id);
 
-    if (!userExists) return null;
+    if (!userExists) {
+      throw new Error('no user found, check data and try again').message;
+    }
 
     const newAddress = await addressRepository.createAddress({
       id,
@@ -18,7 +26,11 @@ class CreateAddressService {
       city,
     });
 
-    return newAddress;
+    if (!newAddress) {
+      throw new Error('it was not possible to register a new address');
+    }
+
+    return newAddress[0];
   }
 }
 

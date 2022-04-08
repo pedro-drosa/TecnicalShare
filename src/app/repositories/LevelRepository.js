@@ -1,10 +1,12 @@
 import Level from '../models/Level.js';
 
 class LevelRepository {
-  createLevel(id, levelName) {
-    return Level.create({
-      user_id: id,
-      level_name: levelName,
+  createLevel(userId, levelName) {
+    return Level.findOrCreate({
+      where: {
+        user_id: userId,
+        level_name: levelName,
+      },
     });
   }
 }

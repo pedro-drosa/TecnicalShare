@@ -6,11 +6,18 @@ const tagRepository = new TagRepository();
 
 class CreateTagsService {
   static async execute(id, tags) {
-    const user = await FindOneUserService.execute(id);
+    const userExists = await FindOneUserService.execute(id);
 
-    if (!user) return null;
+    if (!userExists) {
+      throw new Error('could not add new tags').message;
+    }
 
-    const newTags = await tagRepository.createTagsForOneUser(user, tags);
+    if (!tags.every((tag) => typeof tag === 'string')) {
+      throw new Error('validation error, check the information and try again')
+        .message;
+    }
+
+    const newTags = await tagRepository.createTagsForOneUser(userExists, tags);
 
     return newTags;
   }

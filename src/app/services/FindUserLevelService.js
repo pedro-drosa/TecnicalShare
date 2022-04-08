@@ -8,9 +8,15 @@ class FindUserLevelService {
       include: { association: 'level' },
     });
 
-    if (!userExists) return false;
+    if (!userExists) {
+      throw new Error('user not found, check data and try again').message;
+    }
 
-    return userExists;
+    if (!userExists.level) {
+      throw new Error('no level registered for this user so far').message;
+    }
+
+    return userExists.level;
   }
 }
 

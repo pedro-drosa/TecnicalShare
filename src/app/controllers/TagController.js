@@ -3,23 +3,25 @@ import FindAllTagsService from '../services/FindAllTagsService.js';
 
 class TagController {
   async index(req, res) {
-    const { id } = req.params;
-    const tags = await FindAllTagsService.execute(id);
+    try {
+      const tags = await FindAllTagsService.execute(req.userId);
 
-    return res.json(tags);
+      return res.json(tags);
+    } catch (error) {
+      return res.status(400).json({ error });
+    }
   }
 
   async store(req, res) {
-    const { id } = req.params;
-    const { tags } = req.body;
+    try {
+      const { tags } = req.body;
 
-    const status = await CreateTagsService.execute(id, tags);
+      await CreateTagsService.execute(req.userId, tags);
 
-    if (!status) {
-      return res.status(400).json({ error: 'error when registering tags' });
+      return res.status(201).json({ message: 'tag registration successful' });
+    } catch (error) {
+      return res.status(400).json({ error });
     }
-
-    return res.json({ message: 'tag registration successful', status });
   }
 }
 
