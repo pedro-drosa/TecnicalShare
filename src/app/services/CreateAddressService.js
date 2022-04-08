@@ -9,7 +9,9 @@ class CreateAddressService {
     const { id, zipcode, uf, city } = address;
     const userExists = await userRepository.findOneUserById(id);
 
-    if (!userExists) return null;
+    if (!userExists) {
+      throw new Error('no user found, check data and try again').message;
+    }
 
     const newAddress = await addressRepository.createAddress({
       id,
@@ -18,7 +20,11 @@ class CreateAddressService {
       city,
     });
 
-    return newAddress;
+    if (!newAddress) {
+      throw new Error('it was not possible to register a new address');
+    }
+
+    return newAddress[0];
   }
 }
 

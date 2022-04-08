@@ -8,7 +8,9 @@ class FindAllTagsService {
       include: { association: 'tags' },
     });
 
-    return user;
+    if (!user) throw new Error('error loading this tags').message;
+
+    return user.tags;
   }
 }
 

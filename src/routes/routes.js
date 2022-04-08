@@ -11,14 +11,14 @@ import sessionsRouter from './sessions.routes.js';
 const routes = Router();
 
 // probably i will group some routes
-routes.use('/users', userRouter);
-routes.use('/users', addressRouter);
-routes.use('/users', tagRouter);
-routes.use('/users', levelRouter);
-routes.use('/users', appointmentRouter);
-routes.use('/mentors', mentorRouter);
-routes.use('/schedules', scheduleRouter);
+// routes.use('/users', levelRouter);
+// routes.use('/users', appointmentRouter);
+// routes.use('/mentors', mentorRouter);
+// routes.use('/schedules', scheduleRouter);
 
+routes.use('/users/address', addressRouter);
+routes.use('/users/tags', tagRouter);
+routes.use('/users', userRouter);
 routes.use('/sessions', sessionsRouter);
 
 export default routes;

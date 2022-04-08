@@ -2,7 +2,14 @@ import Address from '../models/Address.js';
 
 class AddressRepository {
   createAddress({ id, zipcode, uf, city }) {
-    return Address.create({ user_id: id, zipcode, uf, city });
+    return Address.findOrCreate({
+      where: {
+        user_id: id,
+        zipcode,
+        uf,
+        city,
+      },
+    });
   }
 }
 
