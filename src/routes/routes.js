@@ -10,8 +10,7 @@ import sessionsRouter from './sessions.routes.js';
 
 const routes = Router();
 
-// probably i will group some routes
-// routes.use('/mentors', mentorRouter);
+routes.use('/mentors', mentorRouter);
 
 routes.use('/users/appointments', appointmentRouter);
 routes.use('/users/schedules', scheduleRouter);
