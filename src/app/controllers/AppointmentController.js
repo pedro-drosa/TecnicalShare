@@ -3,19 +3,27 @@ import FindAllAppointmentsService from '../services/FindAllAppointmentsService.j
 
 class AppointmentController {
   async index(req, res) {
-    const { id } = req.params;
-    const appointments = await FindAllAppointmentsService.execute(id);
+    try {
+      const appointments = await FindAllAppointmentsService.execute(req.userId);
 
-    return res.json(appointments);
+      if (!appointments) {
+        return res.json({
+          message: 'this user has no appointments at the moment',
+        });
+      }
+
+      return res.json(appointments);
+    } catch (error) {
+      return res.status(400).json({ error });
+    }
   }
 
   async store(req, res) {
     try {
       const { mentorId, date } = req.body;
-      const { id } = req.params;
 
       const appointment = await CreateAppointmentService.execute(
-        id,
+        req.userId,
         mentorId,
         date,
       );

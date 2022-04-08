@@ -1,5 +1,5 @@
 import { startOfHour, parseISO, isBefore } from 'date-fns';
-
+import Appointment from '../models/Appointment.js';
 import UserRepository from '../repositories/UserRepository.js';
 import AppointmentRepository from '../repositories/AppointmentRepository.js';
 
@@ -8,6 +8,14 @@ const appointmentRepository = new AppointmentRepository();
 
 class CreateAppointmentService {
   static async execute(id, mentorId, date) {
+    if (id === mentorId) {
+      throw new Error('you cannot create a schedule with yourself').message;
+    }
+
+    if (!(await Appointment.appointmentValidation({ mentorId, date }))) {
+      throw new Error('data validation error').message;
+    }
+
     const IsMentor = await userRepository.findOneUser({
       where: { id: mentorId, mentor: true },
     });
@@ -19,7 +27,8 @@ class CreateAppointmentService {
     const requestedDate = startOfHour(parseISO(date));
 
     if (isBefore(requestedDate, Date.now())) {
-      throw new Error('the requested time is no longer available').message;
+      throw new Error('you cannot create an appointment on a past date')
+        .message;
     }
 
     const appointmentExists = await appointmentRepository.findOneAppointment({
