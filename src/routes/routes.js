@@ -11,11 +11,11 @@ import sessionsRouter from './sessions.routes.js';
 const routes = Router();
 
 // probably i will group some routes
-// routes.use('/users', levelRouter);
 // routes.use('/users', appointmentRouter);
 // routes.use('/mentors', mentorRouter);
 // routes.use('/schedules', scheduleRouter);
 
+routes.use('/users/level', levelRouter);
 routes.use('/users/address', addressRouter);
 routes.use('/users/tags', tagRouter);
 routes.use('/users', userRouter);
