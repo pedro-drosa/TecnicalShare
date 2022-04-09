@@ -12,6 +12,7 @@ class UserRepository {
   createUser(user) {
     return User.create({
       name: user.name,
+      last_name: user.lastName,
       email: user.email,
       password: user.hash,
       occupation_area: user.occupationArea,
