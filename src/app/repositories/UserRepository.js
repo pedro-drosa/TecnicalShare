@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import User from '../models/User.js';
 
 class UserRepository {
@@ -7,6 +8,18 @@ class UserRepository {
 
   findAllUsers(options) {
     return User.findAll(options);
+  }
+
+  findAllMentors(exceptId) {
+    return User.findAll({
+      where: { id: { [Op.not]: exceptId }, mentor: true },
+      attributes: ['id', 'name', 'email', 'occupation_area', 'genre'],
+      include: {
+        attributes: ['tag_name'],
+        association: 'tags',
+        through: { attributes: [] },
+      },
+    });
   }
 
   createUser(user) {

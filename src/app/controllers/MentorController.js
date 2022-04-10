@@ -2,7 +2,7 @@ import FindAllMentorsService from '../services/FindAllMentorsService.js';
 
 class MentorController {
   async index(req, res) {
-    const mentors = await FindAllMentorsService.execute();
+    const mentors = await FindAllMentorsService.execute(req.userId);
 
     if (!mentors) return res.status(404).json({ error: 'no mentor found' });
 
