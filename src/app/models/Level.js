@@ -21,7 +21,7 @@ class Level extends Model {
     this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user_levels' });
   }
 
-  static async levelValidation(levelName) {
+  static async levelValidation({ levelName }) {
     const schema = yup.object().shape({
       levelName: yup.string().required(),
     });

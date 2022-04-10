@@ -5,7 +5,7 @@ import Level from '../models/Level.js';
 const userRepository = new UserRepository();
 const levelRepository = new LevelRepository();
 
-class CreateLevelService {
+class AddNewLevelForOneUserService {
   static async execute(userId, levelName) {
     const userExists = await userRepository.findOneUserById(userId);
 
@@ -27,4 +27,4 @@ class CreateLevelService {
   }
 }
 
-export default CreateLevelService;
+export default AddNewLevelForOneUserService;

@@ -1,7 +1,7 @@
-import CreateLevelService from '../services/CreateLevelService.js';
+import AddNewLevelForOneUserService from '../services/AddNewLevelForOneUserService.js';
 import FindUserLevelService from '../services/FindUserLevelService.js';
 
-class LevelController {
+class UserLevelController {
   async index(req, res) {
     try {
       const levels = await FindUserLevelService.execute(req.userId);
@@ -16,7 +16,10 @@ class LevelController {
     try {
       const { levelName } = req.body;
 
-      const level = await CreateLevelService.execute(req.userId, levelName);
+      const level = await AddNewLevelForOneUserService.execute(
+        req.userId,
+        levelName,
+      );
 
       return res.json(level);
     } catch (error) {
@@ -25,4 +28,4 @@ class LevelController {
   }
 }
 
-export default LevelController;
+export default UserLevelController;
