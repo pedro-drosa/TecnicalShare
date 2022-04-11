@@ -13,6 +13,15 @@ class AppointmentRepository {
     });
   }
 
+  makeProviderTimeUnavailable(appointment) {
+    const { id, mentorId, requestedDate } = appointment;
+    return Appointment.create({
+      user_id: mentorId,
+      mentor_id: id,
+      date: requestedDate,
+    });
+  }
+
   findOneAppointment(options) {
     return Appointment.findOne(options);
   }
