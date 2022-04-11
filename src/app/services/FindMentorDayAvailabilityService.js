@@ -20,6 +20,8 @@ class FindMentorDayAvailabilityService {
     }
 
     const parsedDate = parseISO(date);
+    const [fullDate] = parsedDate.toISOString().split('T'); // [ '2022-04-12', '12:00:00.000Z' ]
+
     const appointments = await appointmentRepository.findAllAppointmentsByDate(
       mentorId,
       parsedDate,
@@ -36,8 +38,9 @@ class FindMentorDayAvailabilityService {
       const hasAppointmentInHour = appointments.find(
         (appointment) => getHours(appointment.date) === hour,
       );
+
       return {
-        hour,
+        hour: `${fullDate}T${String(hour).padStart(2, 0)}:00:00-03:00`,
         available: !hasAppointmentInHour,
       };
     });

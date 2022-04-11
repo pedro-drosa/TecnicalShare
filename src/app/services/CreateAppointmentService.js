@@ -49,6 +49,12 @@ class CreateAppointmentService {
       requestedDate: sub(requestedDate, { hours: 3 }),
     });
 
+    await appointmentRepository.makeProviderTimeUnavailable({
+      id,
+      mentorId,
+      requestedDate: sub(requestedDate, { hours: 3 }),
+    });
+
     return appointment;
   }
 }
