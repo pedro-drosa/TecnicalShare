@@ -1,6 +1,4 @@
-import { startOfDay, endOfDay, parseISO } from 'date-fns';
-import { Op } from 'sequelize';
-
+import { parseISO } from 'date-fns';
 import UserRepository from '../repositories/UserRepository.js';
 import AppointmentRepository from '../repositories/AppointmentRepository.js';
 
@@ -22,16 +20,10 @@ class FindAllSchedulesService {
 
     const parsedDate = parseISO(date);
 
-    const appointments = await appointmentRepository.findAllAppointments({
-      where: {
-        mentor_id: userId,
-        canceled_at: null,
-        date: {
-          [Op.between]: [startOfDay(parsedDate), endOfDay(parsedDate)],
-        },
-      },
-      onder: ['date'],
-    });
+    const appointments = await appointmentRepository.findAllAppointmentsByDate(
+      userId,
+      parsedDate,
+    );
 
     return appointments;
   }

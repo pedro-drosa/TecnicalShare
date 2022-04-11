@@ -21,7 +21,7 @@ routes.use('/users', userLevelRouter);
 // I'll probably have to refactor that too
 routes.use('/mentors', mentorRouter);
 
-routes.use('/users/appointments', appointmentRouter);
-routes.use('/users/schedules', scheduleRouter);
+routes.use('/appointments', appointmentRouter);
+routes.use('/schedules', scheduleRouter);
 
 export default routes;
