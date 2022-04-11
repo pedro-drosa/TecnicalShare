@@ -1,10 +1,10 @@
-import CreateTagsService from '../services/CreateTagsService.js';
-import FindAllTagsService from '../services/FindAllTagsService.js';
+import AddNewTagsForOneUserService from '../services/AddNewTagsForOneUserService.js';
+import FindAllTagsOfOneUserService from '../services/FindAllTagsOfOneUserService.js';
 
-class TagController {
+class UserTagController {
   async index(req, res) {
     try {
-      const tags = await FindAllTagsService.execute(req.userId);
+      const tags = await FindAllTagsOfOneUserService.execute(req.userId);
 
       return res.json(tags);
     } catch (error) {
@@ -16,7 +16,7 @@ class TagController {
     try {
       const { tags } = req.body;
 
-      await CreateTagsService.execute(req.userId, tags);
+      await AddNewTagsForOneUserService.execute(req.userId, tags);
 
       return res.status(201).json({ message: 'tag registration successful' });
     } catch (error) {
@@ -25,4 +25,4 @@ class TagController {
   }
 }
 
-export default TagController;
+export default UserTagController;

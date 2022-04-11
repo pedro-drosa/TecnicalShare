@@ -2,7 +2,7 @@ import UserRepository from '../repositories/UserRepository.js';
 
 const userRepository = new UserRepository();
 
-class FindAllTagsService {
+class FindAllTagsOfOneUserService {
   static async execute(id) {
     const user = await userRepository.findOneUserById(id, {
       include: { association: 'tags' },
@@ -14,4 +14,4 @@ class FindAllTagsService {
   }
 }
 
-export default FindAllTagsService;
+export default FindAllTagsOfOneUserService;

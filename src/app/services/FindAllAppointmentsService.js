@@ -4,15 +4,9 @@ const appointmentRepository = new AppointmentRepository();
 
 class FindAllAppointmentsService {
   static async execute(userId) {
-    const allAppointments = await appointmentRepository.findAllAppointments({
-      where: {
-        user_id: userId,
-        canceled_at: null,
-      },
-      attributes: ['id', 'date', 'user_id'],
-      order: ['date'],
-      include: { association: 'mentor', attributes: ['id', 'name', 'email'] },
-    });
+    const allAppointments = await appointmentRepository.findAllAppointments(
+      userId,
+    );
 
     if (allAppointments.length < 1) {
       return false;

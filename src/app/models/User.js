@@ -6,6 +6,7 @@ class User extends Model {
     super.init(
       {
         name: DataTypes.STRING,
+        last_name: DataTypes.STRING,
         email: DataTypes.STRING,
         password: DataTypes.STRING,
         occupation_area: DataTypes.STRING,
@@ -35,6 +36,7 @@ class User extends Model {
   static async userValidation(user) {
     const schema = yup.object().shape({
       name: yup.string().required(),
+      lastName: yup.string().required(),
       email: yup.string().email().required(),
       password: yup.string().required().min(6),
       occupationArea: yup.string().required(),

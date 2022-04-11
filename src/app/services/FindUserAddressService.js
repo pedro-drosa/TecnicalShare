@@ -1,9 +1,8 @@
-// import AddressRepository from '../repositories/AddressRepository.js';
 import UserRepository from '../repositories/UserRepository.js';
 
 const userRepository = new UserRepository();
 
-class FindOneAddressService {
+class FindUserAddressService {
   static async execute(id) {
     const userExists = await userRepository.findOneUserById(id, {
       include: { association: 'address' },
@@ -21,4 +20,4 @@ class FindOneAddressService {
   }
 }
 
-export default FindOneAddressService;
+export default FindUserAddressService;

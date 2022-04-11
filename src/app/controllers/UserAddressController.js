@@ -1,10 +1,10 @@
-import CreateAddressService from '../services/CreateAddressService.js';
-import FindOneAddressService from '../services/FindOneAddressService.js';
+import RegisterAddressForOneUserService from '../services/RegisterAddressForOneUserService.js';
+import FindUserAddressService from '../services/FindUserAddressService.js';
 
-class AddressController {
+class UserAddressController {
   async index(req, res) {
     try {
-      const address = await FindOneAddressService.execute(req.userId);
+      const address = await FindUserAddressService.execute(req.userId);
 
       return res.json(address);
     } catch (error) {
@@ -16,7 +16,7 @@ class AddressController {
     try {
       const { zipcode, uf, city } = req.body;
 
-      const address = await CreateAddressService.execute({
+      const address = await RegisterAddressForOneUserService.execute({
         id: req.userId,
         zipcode,
         uf,
@@ -30,4 +30,4 @@ class AddressController {
   }
 }
 
-export default AddressController;
+export default UserAddressController;

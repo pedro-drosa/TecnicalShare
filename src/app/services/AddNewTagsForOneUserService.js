@@ -4,7 +4,7 @@ import FindOneUserService from './FindOneUserService.js';
 
 const tagRepository = new TagRepository();
 
-class CreateTagsService {
+class AddNewTagsForOneUserService {
   static async execute(id, tags) {
     const userExists = await FindOneUserService.execute(id);
 
@@ -23,4 +23,4 @@ class CreateTagsService {
   }
 }
 
-export default CreateTagsService;
+export default AddNewTagsForOneUserService;
