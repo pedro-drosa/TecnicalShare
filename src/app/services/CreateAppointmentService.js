@@ -1,4 +1,4 @@
-import { startOfHour, parseISO, isBefore } from 'date-fns';
+import { startOfHour, parseISO, isBefore, sub } from 'date-fns';
 import Appointment from '../models/Appointment.js';
 import UserRepository from '../repositories/UserRepository.js';
 import AppointmentRepository from '../repositories/AppointmentRepository.js';
@@ -35,7 +35,7 @@ class CreateAppointmentService {
       where: {
         mentor_id: mentorId,
         canceled_at: null,
-        date: requestedDate,
+        date: sub(requestedDate, { hours: 3 }),
       },
     });
 
@@ -46,7 +46,7 @@ class CreateAppointmentService {
     const appointment = await appointmentRepository.createNewAppointment({
       id,
       mentorId,
-      requestedDate,
+      requestedDate: sub(requestedDate, { hours: 3 }),
     });
 
     return appointment;

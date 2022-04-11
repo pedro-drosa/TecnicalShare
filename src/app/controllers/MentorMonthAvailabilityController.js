@@ -2,13 +2,17 @@ import FindMentorMonthAvailabilityService from '../services/FindMentorMonthAvail
 
 class MentorMonthAvailabilityController {
   async index(req, res) {
-    const { id } = req.params;
-    const { date } = req.query;
-    const appointments = await FindMentorMonthAvailabilityService.execute(
-      id,
-      date,
-    );
-    return res.json(appointments);
+    try {
+      const { id } = req.params;
+      const { date } = req.query;
+      const appointments = await FindMentorMonthAvailabilityService.execute(
+        id,
+        date,
+      );
+      return res.json(appointments);
+    } catch (error) {
+      return res.status(400).json({ error });
+    }
   }
 }
 

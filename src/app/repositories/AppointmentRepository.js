@@ -5,6 +5,7 @@ import Appointment from '../models/Appointment.js';
 class AppointmentRepository {
   createNewAppointment(appointment) {
     const { id, mentorId, requestedDate } = appointment;
+
     return Appointment.create({
       user_id: id,
       mentor_id: mentorId,
@@ -14,6 +15,18 @@ class AppointmentRepository {
 
   findOneAppointment(options) {
     return Appointment.findOne(options);
+  }
+
+  findAllAppointments(userId) {
+    return Appointment.findAll({
+      where: {
+        user_id: userId,
+        canceled_at: null,
+      },
+      attributes: ['id', 'date', 'user_id'],
+      order: ['date'],
+      include: { association: 'mentor', attributes: ['id', 'name', 'email'] },
+    });
   }
 
   findAllAppointmentsByMonth(mentorId, date) {
