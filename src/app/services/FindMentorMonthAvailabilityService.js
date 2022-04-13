@@ -1,4 +1,4 @@
-import { parseISO, getDaysInMonth, getDate } from 'date-fns';
+import { parseISO, getDaysInMonth, getDate, isAfter } from 'date-fns';
 import AppointmentRepository from '../repositories/AppointmentRepository.js';
 import UserRepository from '../repositories/UserRepository.js';
 
@@ -36,13 +36,16 @@ class FindMentorMonthAvailabilityService {
     );
 
     const availability = everyDayOfTheMonth.map((day) => {
+      const compareDate = new Date(year, month, day, 16, 59, 59);
+
       const appointmentsInDay = appointments.filter(
         (appointment) => getDate(appointment.date) === day,
       );
 
       return {
         day,
-        available: appointmentsInDay.length < 10,
+        available:
+          appointmentsInDay.length < 10 && isAfter(compareDate, new Date()),
       };
     });
 
