@@ -16,6 +16,14 @@ class UserTagController {
     try {
       const { tags } = req.body;
 
+      if (!Array.isArray(tags)) {
+        return res
+          .status(400)
+          .json({
+            message: 'data validation error, the data is in an invalid format',
+          });
+      }
+
       await AddNewTagsForOneUserService.execute(req.userId, tags);
 
       return res.status(201).json({ message: 'tag registration successful' });
