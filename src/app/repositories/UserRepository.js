@@ -22,6 +22,25 @@ class UserRepository {
     });
   }
 
+  findAllCompatibleMentorsByTags(exceptId, tags) {
+    return User.findAll({
+      attributes: ['id', 'name', 'last_name', 'email'],
+      order: ['id'],
+      include: [
+        {
+          association: 'tags',
+          attributes: ['tag_name'],
+          through: { attributes: [] },
+          where: { tag_name: { [Op.like]: { [Op.any]: [...tags] } } },
+        },
+      ],
+      where: {
+        id: { [Op.not]: exceptId },
+        mentor: true,
+      },
+    });
+  }
+
   createUser(user) {
     return User.create({
       name: user.name,
@@ -44,6 +63,17 @@ class UserRepository {
 
   findOneUserById(id, options = null) {
     return User.findByPk(id, options);
+  }
+
+  findOneUserAndTagsById(userId) {
+    return User.findByPk(userId, {
+      attributes: [],
+      include: {
+        association: 'tags',
+        attributes: ['tag_name'],
+        through: { attributes: [] },
+      },
+    });
   }
 }
 

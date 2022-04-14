@@ -11,6 +11,7 @@
   "rules": {
     "import/extensions": "off",
     "class-methods-use-this": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "operator-linebreak": "off"
   }
 }

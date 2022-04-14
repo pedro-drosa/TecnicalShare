@@ -1,4 +1,4 @@
-import { parseISO, getHours } from 'date-fns';
+import { parseISO, getHours, isAfter } from 'date-fns';
 import AppointmentRepository from '../repositories/AppointmentRepository.js';
 import UserRepository from '../repositories/UserRepository.js';
 
@@ -34,14 +34,23 @@ class FindMentorDayAvailabilityService {
       (value, index) => index + firstHourOfTheDay,
     );
 
+    const currentDate = new Date(Date.now());
+
     const availability = allHoursOfTheDay.map((hour) => {
       const hasAppointmentInHour = appointments.find(
         (appointment) => getHours(appointment.date) === hour,
       );
 
+      const appointmentsDate = `${fullDate}T${String(hour).padStart(
+        2,
+        0,
+      )}:00:00-03:00`;
+
       return {
-        hour: `${fullDate}T${String(hour).padStart(2, 0)}:00:00-03:00`,
-        available: !hasAppointmentInHour,
+        hour: appointmentsDate,
+        available:
+          !hasAppointmentInHour &&
+          isAfter(parseISO(appointmentsDate), currentDate),
       };
     });
 

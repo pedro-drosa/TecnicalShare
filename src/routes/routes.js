@@ -4,6 +4,7 @@ import userRouter from './user.routes.js';
 import userTagsRouter from './user_tags.routes.js';
 import userAddressRouter from './user_address.routes.js';
 import userLevelRouter from './user_level.routes.js';
+import matchFilterRouter from './matchFilter.routes.js';
 
 import mentorRouter from './mentor.routes.js';
 import appointmentRouter from './appointment.routes.js';
@@ -23,5 +24,7 @@ routes.use('/mentors', mentorRouter);
 
 routes.use('/appointments', appointmentRouter);
 routes.use('/schedules', scheduleRouter);
+
+routes.use('/match-filter', matchFilterRouter);
 
 export default routes;
