@@ -1,6 +1,5 @@
 import UserRepository from '../repositories/UserRepository.js';
 import LevelRepository from '../repositories/LevelRepository.js';
-import Level from '../models/Level.js';
 
 const userRepository = new UserRepository();
 const levelRepository = new LevelRepository();
@@ -9,8 +8,9 @@ class AddNewLevelForOneUserService {
   static async execute(userId, levelName) {
     const userExists = await userRepository.findOneUserById(userId);
 
-    if (!(await Level.levelValidation({ levelName }))) {
-      throw new Error('data validation error').message;
+    if (typeof levelName !== 'string') {
+      throw new Error('validation error, check the information and try again')
+        .message;
     }
 
     if (!userExists) {

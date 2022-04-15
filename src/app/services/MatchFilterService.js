@@ -2,11 +2,21 @@ import { isBefore, startOfHour, parseISO } from 'date-fns';
 import UserRepository from '../repositories/UserRepository.js';
 import MatchFilter from '../../utils/MatchFilter.js';
 import FindMentorDayAvailabilityService from './FindMentorDayAvailabilityService.js';
+import Validate from '../../utils/Validate.js';
 
 const userRepository = new UserRepository();
 
 class MatchFilterService {
   static async execute(currentUser, initialDate, finalDate) {
+    if (
+      !(await Validate.dateValidation({ date: initialDate })) ||
+      !(await Validate.dateValidation({ date: finalDate }))
+    ) {
+      throw new Error(
+        'data validation error, check the information and try again',
+      ).message;
+    }
+
     const matchFilter = new MatchFilter(initialDate, finalDate);
 
     const initialRequestedDate = startOfHour(parseISO(initialDate));

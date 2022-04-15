@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
 import UserRepository from '../repositories/UserRepository.js';
 import PasswordHash from '../../utils/PasswordHash.js';
 import authConfig from '../../config/auth.js';
+import Validate from '../../utils/Validate.js';
 
 const userRepository = new UserRepository();
 
 class CreateSessionService {
   static async execute(email, password) {
-    if (!(await User.sessionValidation(email, password))) {
+    if (!(await Validate.sessionValidation(email, password))) {
       throw new Error('validation error, please check the data').message;
     }
 

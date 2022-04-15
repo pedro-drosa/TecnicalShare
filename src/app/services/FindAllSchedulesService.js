@@ -1,12 +1,19 @@
 import { parseISO } from 'date-fns';
 import UserRepository from '../repositories/UserRepository.js';
 import AppointmentRepository from '../repositories/AppointmentRepository.js';
+import Validate from '../../utils/Validate.js';
 
 const userRepository = new UserRepository();
 const appointmentRepository = new AppointmentRepository();
 
 class FindAllSchedulesService {
   static async execute(userId, date) {
+    if (!(await Validate.dateValidation({ date }))) {
+      throw new Error(
+        'data validation error, check the information and try again',
+      ).message;
+    }
+
     const isMentor = await userRepository.findOneUser({
       where: {
         id: userId,

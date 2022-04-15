@@ -1,6 +1,6 @@
 import AddressRepository from '../repositories/AddressRepository.js';
 import UserRepository from '../repositories/UserRepository.js';
-import Address from '../models/Address.js';
+import Validate from '../../utils/Validate.js';
 
 const addressRepository = new AddressRepository();
 const userRepository = new UserRepository();
@@ -9,7 +9,7 @@ class CreateAddressService {
   static async execute(address) {
     const { id, zipcode, uf, city } = address;
 
-    if (!(await Address.addressValidation(address))) {
+    if (!(await Validate.addressValidation(address))) {
       throw new Error('data validation error').message;
     }
 
