@@ -6,11 +6,15 @@
   <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
+<p align="center">
+  <a href="https://insomnia.rest/run/?label=TechnicalShare&uri=https%3A%2F%2Fgithub.com%2Fpedro-drosa%2FTecnicalShare%2Fblob%2Fpedro-mascarenhas%2FInsomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+</p>
+
 ## 💻 Sobre o projeto
 
 A TechnicalShare é uma plataforma onde os usuários podem encontrar um "Mentor Ideal", com ela é possível agendar mentorias de forma simples, através de um sistema de match.
 
-MVP Criado no [programa de formaçao](https://digital.fcamara.com.br/programadeformacao) promovido pela [FCamara](https://digital.fcamara.com.br)
+MVP Criado durante o hackaton do [programa de formaçao](https://digital.fcamara.com.br/programadeformacao) promovido pela [FCamara](https://digital.fcamara.com.br).
 
 ## ✨ Tecnologias
 
