@@ -1,7 +1,7 @@
 import { startOfHour, parseISO, isBefore, sub } from 'date-fns';
-import Appointment from '../models/Appointment.js';
 import UserRepository from '../repositories/UserRepository.js';
 import AppointmentRepository from '../repositories/AppointmentRepository.js';
+import Validate from '../../utils/Validate.js';
 
 const userRepository = new UserRepository();
 const appointmentRepository = new AppointmentRepository();
@@ -12,7 +12,7 @@ class CreateAppointmentService {
       throw new Error('you cannot create a schedule with yourself').message;
     }
 
-    if (!(await Appointment.appointmentValidation({ mentorId, date }))) {
+    if (!(await Validate.appointmentValidation({ mentorId, date }))) {
       throw new Error('data validation error').message;
     }
 

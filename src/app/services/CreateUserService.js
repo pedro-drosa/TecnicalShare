@@ -1,6 +1,6 @@
-import User from '../models/User.js';
 import UserRepository from '../repositories/UserRepository.js';
 import PasswordHash from '../../utils/PasswordHash.js';
+import Validate from '../../utils/Validate.js';
 
 const userRepository = new UserRepository();
 
@@ -8,8 +8,9 @@ class CreateUserService {
   static async execute(user) {
     const { email, password } = user;
 
-    if (!(await User.userValidation(user))) {
-      throw new Error('validation error, please check the data').message;
+    if (!(await Validate.userValidation(user))) {
+      throw new Error('validation error, check the information and try again')
+        .message;
     }
 
     const userExists = await userRepository.findOneUserByEmail(email);
