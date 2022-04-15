@@ -1,12 +1,19 @@
 import { parseISO, getHours, isAfter } from 'date-fns';
 import AppointmentRepository from '../repositories/AppointmentRepository.js';
 import UserRepository from '../repositories/UserRepository.js';
+import Validate from '../../utils/Validate.js';
 
 const appointmentRepository = new AppointmentRepository();
 const userRepository = new UserRepository();
 
 class FindMentorDayAvailabilityService {
   static async execute(mentorId, date) {
+    if (!(await Validate.dateValidation({ date }))) {
+      throw new Error(
+        'data validation error, check the information and try again',
+      ).message;
+    }
+
     const userExists = await userRepository.findOneUserById(mentorId);
 
     if (!userExists) {
