@@ -6,6 +6,7 @@ networks:
 
 services:
   api:
+    entrypoint: ['/bin/bash', './entrypoint.sh']
     container_name: api
     build:
       context: .
@@ -14,23 +15,22 @@ services:
       - '5000:5000'
     networks:
       - 'api-network'
-    # volumes:
-    # - .:/app
-    # - node_modules:/app/node_modules
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: ${DB_HOST}
+    depends_on:
+      - postgres
 
   postgres:
     container_name: postgres
     image: postgres:14.2
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_PASSWORD=1234
+      - POSTGRES_PASSWORD=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_NAME=${DB_NAME}
     ports:
       - 5432:5432
     networks:
       - 'api-network'
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-
-volumes:
-  # node_modules:
-  postgres-data:
