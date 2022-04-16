@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://insomnia.rest/run/?label=TechnicalShare&uri=https%3A%2F%2Fgithub.com%2Fpedro-drosa%2FTecnicalShare%2Fblob%2Fpedro-mascarenhas%2FInsomnia.json" target="_blank"><img src="https://img.shields.io/badge/Docs-Run%20in%20Insomnia-purple" alt="Run in Insomnia"></a>
-  <a href="https://documenter.getpostman.com/view/20525575/Uyr5nJiY" target="_blank"><img src="https://img.shields.io/badge/Docs-Run%20in%20Postman-orange" alt="Run in Postman" /></a>
+  <a href="https://documenter.getpostman.com/view/20525575/Uyr5nJsN" target="_blank"><img src="https://img.shields.io/badge/Docs-Run%20in%20Postman-orange" alt="Run in Postman" /></a>
 </p>
 
 ## 💻 Sobre o projeto
@@ -62,4 +62,4 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 ## 📄 Acesse aqui
 
 - Link da api em produção [aqui.](https://technical-share-api.herokuapp.com)
-- Link para a documentação [aqui.](https://documenter.getpostman.com/view/20525575/Uyr5nJiY)
+- Link para a documentação [aqui.](https://documenter.getpostman.com/view/20525575/Uyr5nJsN)
