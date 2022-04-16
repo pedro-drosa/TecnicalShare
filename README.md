@@ -44,9 +44,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 1. Clone o repositório `git clone https://github.com/pedro-drosa/TecnicalShare.git`
 2. Inicie os containers `docker-compose up`
-3. Crie a base de dados `docker compose run --rm api npx sequelize-cli db:create`
-4. Execute as migrations `docker compose run --rm api npx sequelize-cli db:migrate`
-5. Agora você pode acessar [`localhost:5000`](http://localhost:5000) do seu navegador.
+3. Agora você pode acessar [`localhost:5000`](http://localhost:5000) do seu navegador.
 
 ### ⚡ Execute Sem o Docker
 
@@ -58,10 +56,10 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 4. Crie a base de dados `npx sequelize-cli db:create`
 5. Execute as migrations `npx sequelize-cli db:migrate`
-6. Agora você pode acessar [`localhost:5000`](http://localhost:5000) do seu navegador.
+6. Adicione os seeds `npx sequelize-cli db:seed:all`
+7. Agora você pode acessar [`localhost:5000`](http://localhost:5000) do seu navegador.
 
 ## 📄 Acesse aqui
 
-## Link da api em produção [aqui.](https://technical-share-api.herokuapp.com)
-
-## Link para a documentação [aqui.](https://documenter.getpostman.com/view/20525575/Uyr5nJiY)
+- Link da api em produção [aqui.](https://technical-share-api.herokuapp.com)
+- Link para a documentação [aqui.](https://documenter.getpostman.com/view/20525575/Uyr5nJiY)
